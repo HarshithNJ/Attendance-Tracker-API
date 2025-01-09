@@ -7,4 +7,6 @@ public interface attendanceRepository extends JpaRepository<attendanceRecord, In
 
     boolean existByRollNoAndDate(String rollNO, String date);
 
+    boolean existByName(String name);
+
 }
