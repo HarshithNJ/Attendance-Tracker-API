@@ -17,7 +17,7 @@ public class attendanceService {
     attendanceRepository repository;
 
     public ResponseEntity<Object> saveAttendance(attendanceRecord attendance) {
-        if (repository.existByRollNoAndDate(attendance.getRollNO(), attendance.getDate())) {
+        if (repository.existsByNameAndDate(attendance.getName(), attendance.getDate())) {
             
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("error", "Data Already Exists");

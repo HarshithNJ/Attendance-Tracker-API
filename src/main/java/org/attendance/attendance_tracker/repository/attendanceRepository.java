@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface attendanceRepository extends JpaRepository<attendanceRecord, Integer>{
 
-    boolean existByRollNoAndDate(String rollNO, String date);
+    boolean existsByNameAndDate(String name, String date);
 
-    boolean existByName(String name);
+    // boolean existsByRollNoAndDate(String rollNO, String date);
 
 }

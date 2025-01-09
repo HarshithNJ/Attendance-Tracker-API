@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -17,7 +18,7 @@ public class attendanceController {
 
     /*To Save Attendance Record*/
     //To save Single Attendance Record
-    @GetMapping("/attendance")
+    @PostMapping("/attendance")
     public ResponseEntity<Object> saveAttendance(@RequestBody attendanceRecord attendance){
         return service.saveAttendance(attendance);
     }
