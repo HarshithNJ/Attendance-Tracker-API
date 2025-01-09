@@ -1,6 +1,7 @@
 package org.attendance.attendance_tracker.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.attendance.attendance_tracker.dto.attendanceRecord;
@@ -20,7 +21,7 @@ public class attendanceService {
         if (repository.existsByNameAndDate(attendance.getName(), attendance.getDate())) {
             
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("error", "Data Already Exists");
+            map.put("error", "Attendance Already Marked");
 
             return new ResponseEntity<Object>(map, HttpStatus.BAD_REQUEST);
         }else{
@@ -33,6 +34,25 @@ public class attendanceService {
 
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
         }
+    }
+
+    public ResponseEntity<Object> saveMultiple(List<attendanceRecord> multiple) {
+        for(attendanceRecord attendance : multiple){
+            if (repository.existsByNameAndDate(attendance.getName(), attendance.getDate())) {
+            
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("error", "Attendance Already Marked");
+    
+                return new ResponseEntity<Object>(map, HttpStatus.BAD_REQUEST);
+            }
+        }
+        repository.saveAll(multiple);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Attendance marked Successfully");
+            map.put("Data", multiple);
+
+            return new ResponseEntity<Object>(map, HttpStatus.CREATED);
     }
     
 }
