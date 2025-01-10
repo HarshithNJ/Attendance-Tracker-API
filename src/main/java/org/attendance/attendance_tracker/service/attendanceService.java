@@ -3,6 +3,7 @@ package org.attendance.attendance_tracker.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.attendance.attendance_tracker.dto.attendanceRecord;
 import org.attendance.attendance_tracker.repository.attendanceRepository;
@@ -107,6 +108,24 @@ public class attendanceService {
             map.put("Data", li);
 
             return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
+
+    public ResponseEntity<Object> deleteById(int id) {
+        Optional<attendanceRecord> op = repository.findById(id);
+        if(op.isPresent()){
+            repository.deleteById(id);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Attendance Record Deleted with the roll No :" + op.get().getRollNO());
+            map.put("Data", op.get());
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Attendance Record Not Found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NO_CONTENT);
         }
     }
     

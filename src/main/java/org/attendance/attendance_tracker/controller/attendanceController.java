@@ -31,6 +31,11 @@ public class attendanceController {
     public ResponseEntity<Object> saveMultiple(@RequestBody List<attendanceRecord> multiple){
         return service.saveMultiple(multiple);
     }
+
+
+
+
+
     
     /*To Fetch Attendance Records*/
     //To Get All Attendance Records
@@ -49,5 +54,16 @@ public class attendanceController {
     @GetMapping("/attendance/date/{date}")
     public ResponseEntity<Object> getAttendanceByDate(@PathVariable String date){
         return service.getAttendanceByDate(date);
+    }
+
+
+
+
+
+    /*To Delete Attendance Records*/
+    //To Delete a Attendance Record By Id
+    @GetMapping("/attendance/{id}")
+    public ResponseEntity<Object> deleteById(@PathVariable int id){
+        return service.deleteById(id);
     }
 }
