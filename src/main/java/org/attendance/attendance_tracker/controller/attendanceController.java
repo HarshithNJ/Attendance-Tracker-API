@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -31,5 +32,22 @@ public class attendanceController {
         return service.saveMultiple(multiple);
     }
     
+    /*To Fetch Attendance Records*/
+    //To Get All Attendance Records
+    @GetMapping("/attendance")
+    public ResponseEntity<Object> getAllAttendance(){
+        return service.getAllAttendance();
+    }
+
+    //To Get Attendance Record By name
+    @GetMapping("/attendance/{name}")
+    public ResponseEntity<Object> getAttendanceByName(@PathVariable String name){
+        return service.getAttendanceByName(name);
+    }
     
+    //To Get Attendance Record By presenties By Date
+    @GetMapping("/attendance/date/{date}")
+    public ResponseEntity<Object> getAttendanceByDate(@PathVariable String date){
+        return service.getAttendanceByDate(date);
+    }
 }

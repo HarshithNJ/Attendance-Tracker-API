@@ -54,5 +54,60 @@ public class attendanceService {
 
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
     }
+
+
+
+
+
+
+    
+    public ResponseEntity<Object> getAllAttendance() {
+        List<attendanceRecord> records = repository.findAll();
+        if(records.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No Records Found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Attendance Records Found");
+            map.put("Data", records);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
+
+    public ResponseEntity<Object> getAttendanceByName(String name) {
+        List<attendanceRecord> li = repository.findByName(name);
+        if(li.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No Records Found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Attendance Records Found");
+            map.put("Data", li);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
+
+    public ResponseEntity<Object> getAttendanceByDate(String date) {
+        List<attendanceRecord> li = repository.findByDate(date);
+
+        if(li.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "No Records Found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Attendance Records Found");
+            map.put("Data", li);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
     
 }
