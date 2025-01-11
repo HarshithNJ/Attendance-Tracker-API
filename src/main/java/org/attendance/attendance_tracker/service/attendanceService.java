@@ -157,12 +157,12 @@ public class attendanceService {
             map.put("success", "Attendance Updated Successfully");
             map.put("Data", ar);
 
-            return new ResponseEntity<Object>(map, HttpStatus.OK);
+            return new ResponseEntity<Object>(map, HttpStatus.ACCEPTED);
         }else{
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("error", "Attendance Record Not Found");
 
-            return new ResponseEntity<Object>(map, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_ACCEPTABLE);
         }
     }
     
