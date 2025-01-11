@@ -128,5 +128,42 @@ public class attendanceService {
             return new ResponseEntity<Object>(map, HttpStatus.NO_CONTENT);
         }
     }
+
+
+
+
+
+
+    public ResponseEntity<Object> updateAttendance(int id, attendanceRecord attendance) {
+        if (repository.findById(id).isPresent()) {
+
+            attendanceRecord ar = repository.findById(id).get();
+
+            if(attendance.getRollNO() != null)
+                ar.setRollNO(attendance.getRollNO());
+
+            if(attendance.getName() != null)
+                ar.setName(attendance.getName());
+
+            if(attendance.getDate() != null)
+                ar.setDate(attendance.getDate());
+
+            if(attendance.getStatus() != null)
+                ar.setStatus(attendance.getStatus());
+
+            repository.save(ar);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Attendance Updated Successfully");
+            map.put("Data", ar);
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Attendance Record Not Found");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NO_CONTENT);
+        }
+    }
     
 }
