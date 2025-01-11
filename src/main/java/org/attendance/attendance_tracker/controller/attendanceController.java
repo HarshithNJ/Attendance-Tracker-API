@@ -59,7 +59,7 @@ public class attendanceController {
     }
 
     
-    @Operation(summary = "To Get All Attendance Records", description = "To Get All Attendance Records")
+    @Operation(summary = "To Get All Attendance Records", description = "To Get All Attendance Records By Name")
     @ApiResponse(responseCode = "302", description = "Data Found")
     @ApiResponse(responseCode = "404", description = "Data Not Found")
     @GetMapping("/attendance/{name}")
@@ -68,7 +68,7 @@ public class attendanceController {
     }
     
     
-    @Operation(summary = "To Get All Attendance Records", description = "To Get All Attendance Records")
+    @Operation(summary = "To Get All Attendance Records", description = "To Get All Attendance Records By Date")
     @ApiResponse(responseCode = "302", description = "Data Found")
     @ApiResponse(responseCode = "404", description = "Data Not Found")
     @GetMapping("/attendance/date/{date}")
@@ -81,7 +81,7 @@ public class attendanceController {
 
 
     /*To Delete Attendance Records*/
-    @Operation(summary = "To Delete Attendance Record", description = "To Delete Attendance Record")
+    @Operation(summary = "To Delete Attendance Record", description = "To Delete Attendance Record By Id")
     @ApiResponse(responseCode = "200", description = "Success")
     @ApiResponse(responseCode = "204", description = "Failure")
     @GetMapping("/attendance/{id}")
@@ -94,7 +94,7 @@ public class attendanceController {
 
 
     /* To Update Attendance Record */
-    @Operation(summary = "To Update Attendance Record", description = "To Update Attendance Record")
+    @Operation(summary = "To Update Attendance Record", description = "To Update Attendance Record Using Patch")
     @ApiResponse(responseCode = "202", description = "Updated Success")
     @ApiResponse(responseCode = "406", description = "Update Failure")
     @PatchMapping("/attendance/{id}")
